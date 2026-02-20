@@ -1,35 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>‎</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: black;
-      overflow: hidden;
-    }
-    iframe {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      border: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<style>
+html, body {
+  margin:0;
+  height:100%;
+  background:black;
+  overflow:hidden;
+}
+#player {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+}
+</style>
 </head>
 <body>
 
-<iframe 
-  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0&playsinline=1"
-  title="YouTube video player"
-  allow="autoplay; encrypted-media"
-  allowfullscreen>
-</iframe>
+<div id="player"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      videoId: 'dQw4w9WgXcQ',
+      playerVars: {
+        autoplay: 1,
+        controls: 0,
+        modestbranding: 1,
+        playsinline: 1,
+        mute: 1
+      },
+      events: {
+        onReady: function(event) {
+          event.target.playVideo();
+        }
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
