@@ -25,23 +25,30 @@ html, body {
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
   var player;
+
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
       videoId: 'dQw4w9WgXcQ',
       playerVars: {
         autoplay: 1,
         controls: 0,
-        modestbranding: 1,
-        playsinline: 1,
-        mute: 1
+        playsinline: 1
       },
       events: {
         onReady: function(event) {
+          event.target.mute();
           event.target.playVideo();
         }
       }
     });
   }
+
+  // Unmute on first click anywhere
+  document.addEventListener("click", function () {
+    if (player) {
+      player.unMute();
+    }
+  }, { once: true });
 </script>
 
 </body>
